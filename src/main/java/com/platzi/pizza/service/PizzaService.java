@@ -4,6 +4,7 @@ import com.platzi.pizza.persistence.entity.PizzaEntity;
 import com.platzi.pizza.persistence.repository.PizzaPagSortRepository;
 import com.platzi.pizza.persistence.repository.PizzaRepository;
 import com.platzi.pizza.service.dto.UpdatePizzaPriceDTO;
+import com.platzi.pizza.service.exception.EmailApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -80,9 +81,15 @@ public class PizzaService {
         this.pizzaRepository.deleteById(idPizza);
     }
 
-    @Transactional
+    @Transactional(noRollbackFor = EmailApiException.class)
+//    @Transactional tiene otrro atributo propagation que por defecto es REQUIRED
     public void updatePrice(UpdatePizzaPriceDTO updatePizzaPriceDTO) {
         this.pizzaRepository.updatePrice(updatePizzaPriceDTO);
+        this.sendEmail();
+    }
+
+    private void sendEmail() {
+        throw new EmailApiException();
     }
 
     public boolean exists(int idPizza) {
