@@ -3,6 +3,7 @@ package com.platzi.pizza.service;
 import com.platzi.pizza.persistence.entity.PizzaEntity;
 import com.platzi.pizza.persistence.repository.PizzaRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PizzaService {
     private final JdbcTemplate jdbcTemplate;
     private final PizzaRepository pizzaRepository;
@@ -24,6 +26,7 @@ public class PizzaService {
     }
 
     public List<PizzaEntity> getAvailable() {
+        log.info(String.valueOf(this.pizzaRepository.countAllByVeganTrue()));
         return this.pizzaRepository.findAllByAvailableTrueOrderByPrice();
     }
 
