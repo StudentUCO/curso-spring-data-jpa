@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql_db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: pizzeria
+      MYSQL_USER: PizzaManDBA
+      MYSQL_PASSWORD: PolloConChampiñones
+    volumes:
+      - mysql_db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_db_data:
