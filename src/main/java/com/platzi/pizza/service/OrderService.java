@@ -39,4 +39,8 @@ public class OrderService {
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT, ON_SITE);
         return this.orderRepository.findAllByMethodIn(methods);
     }
+
+    public List<OrderEntity> getCustomerOrders(String idCustomer) {
+        return orderRepository.findCustomerOrders(idCustomer);
+    }
 }
