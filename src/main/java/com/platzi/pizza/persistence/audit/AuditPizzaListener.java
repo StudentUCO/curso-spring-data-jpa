@@ -12,7 +12,7 @@ public class AuditPizzaListener {
 
     @PostLoad
     public void postLoad(PizzaEntity entity) {
-        System.out.println("POST LOAD");
+//        System.out.println("POST LOAD");
         this.currentValue = SerializationUtils.clone(entity);
     }
 

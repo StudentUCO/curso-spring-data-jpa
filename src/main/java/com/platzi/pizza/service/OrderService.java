@@ -28,7 +28,7 @@ public class OrderService {
 
 //        Recupera el customer de la base de datos cuando se utiliza el get debido al fecth de LAZY de la relacion
 //        configurada en la entidad
-        orders.forEach(order -> System.out.println(order.getCustomer().getName()));
+//        orders.forEach(order -> System.out.println(order.getCustomer().getName()));
 
         return orders;
     }
